@@ -1,0 +1,100 @@
+{% extends 'base.html' %} {%block title%} DASHBOARD {% endblock %} 
+{% block content %}
+<div class="card-body pt-0">
+    <div class="tab-content">
+      <div
+        class="tab-pane preview-tab-pane active"
+        role="tabpanel"
+        aria-labelledby="tab-dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
+        id="dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
+      >
+        <div
+          id="tableExample"
+          data-list='{"valueNames":["LedgerNo","SubLedgerNo","LGCode","TransactionDate","Narration","Amount","TenderAmount","VoucherNo"],"page":10,"pagination":true}'
+        >
+
+          <div class="table-responsive scrollbar">
+            <table class="table table-bordered table-striped fs--1 mb-0">
+              <thead class="bg-200 text-900">
+                <tr>
+                  <th class="sort" data-sort="LedgerNo">LedgerNo</th>
+                  <th class="sort" data-sort="SubLedgerNo">SubLedgerNo</th>
+                  <th class="sort" data-sort="LGCode">LGCode</th>
+                  <th class="sort" data-sort="TransactionDate">TransactionDate</th>
+                  <th class="sort" data-sort="Narration">Narration</th>
+                  <th class="sort" data-sort="Amount">Amount</th>
+                  <th class="sort" data-sort="TenderAmount">TenderAmount</th>
+                  <th class="sort" data-sort="VoucherNo">VoucherNo</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                {% for items in data %}
+                <tr>
+                  <td class="LedgerNo">{{ items.LedgerNo }}</td>
+                  <td class="SubLedgerNo">{{ items.SubLedgerNo }}</td>
+                  <td class="LGCode">{{ items.LGCode }}</td>
+                  <td class="TransactionDate">{{ items.TransactionDate }}</td>
+                  <td class="Narration">{{ items.Narration }}</td>
+                  <td class="Amount">{{ items.Amount }}</td>
+                  <td class="TenderAmount">{{ items.TenderAmount }}</td>
+                  <td class="VoucherNo">{{ items.VoucherNo }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tr class="border border-dark">
+                <td>Total:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{TotalAmount}}</td>
+                <td>{{TenderAmount}}</td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+          <div class="row align-items-center mt-3">
+            <div class="pagination d-none"></div>
+            <div class="col">
+              <p class="mb-0 fs--1">
+                <span
+                  class="d-none d-sm-inline-block"
+                  data-list-info="data-list-info"
+                ></span>
+                <span class="d-none d-sm-inline-block"> &mdash; </span>
+                <a class="fw-semi-bold" href="#!" data-list-view="*"
+                  >View all<span
+                    class="fas fa-angle-right ms-1"
+                    data-fa-transform="down-1"
+                  ></span></a
+                ><a class="fw-semi-bold d-none" href="#!" data-list-view="less"
+                  >View Less<span
+                    class="fas fa-angle-right ms-1"
+                    data-fa-transform="down-1"
+                  ></span
+                ></a>
+              </p>
+            </div>
+            <div class="col-auto d-flex">
+              <button
+                class="btn btn-sm btn-primary"
+                type="button"
+                data-list-pagination="prev"
+              >
+                <span>Previous</span>
+              </button>
+              <button
+                class="btn btn-sm btn-primary px-4 ms-2"
+                type="button"
+                data-list-pagination="next"
+              >
+                <span>Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
