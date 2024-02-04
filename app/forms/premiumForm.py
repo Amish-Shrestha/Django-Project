@@ -13,7 +13,7 @@ class PremiumForm(forms.ModelForm):
         ('a','a')
     ]
     
-    ProvinceCode = forms.ChoiceField(choices=banks_choices, widget=forms.Select(attrs={'class':'form-control'}))
+    ProvinceCode = forms.ChoiceField(choices=banks_choices, widget=forms.Select(attrs={'class':'form-control'}))    
     BranchCode = forms.ChoiceField(choices=banks_choices, widget=forms.Select(attrs={'class':'form-control'}))
     TodayPremium = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
     TotalPremium = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'form-control'}))
