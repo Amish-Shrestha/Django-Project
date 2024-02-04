@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from accounts.middleware.permission import user_group_required, group_permission_required
 from django.contrib.auth.models import User
+from .forms.premiumForm import PremiumForm
 # Create your views here.
 
 @login_required
@@ -27,6 +28,12 @@ def logout_view(request):
     return response
 
 
+class PremiumData:
+    
+    def PremimumView(request):
+        Form = PremiumForm()
+        return render(request,'required/premium.html',{'Form': Form})
+        
 
 # @login_required
 # def refresh_session(request):

@@ -7,10 +7,10 @@ class BankStateForm(forms.ModelForm):
         model = BankState
         fields = ['BankName', 'BankShortName','LedgerNo','Amount','LatestDate','EditDate']
         # fields = '__all__'  # Use all fields from the model
-        widgets = {
-            'LatestDate': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
-            'EditDate': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
-        }
+        # widgets = {
+        #     'LatestDate': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+        #     'EditDate': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+        # }
     
     
     banks_choices = [
