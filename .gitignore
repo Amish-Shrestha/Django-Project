@@ -1,11 +1,7 @@
 __pycache__/
 */__pycache__/
 **/__pycache__/
-
 .env
-
-./db.sqlite3
-
-./README.md
-
-.static/*
+db.sqlite3
+README.md
+static/*
