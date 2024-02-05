@@ -9,5 +9,6 @@ urlpatterns = [
     path('bankstate/delete/<int:pk>/', bankStateClass.delete_bankstate, name='delete_bankstate'),
     path('account/phonepayreports', PhonePayReportView.phonepay, name='phonepay'),
     path('account/BankBalance', BankBalanceView.BankBalanceStatements, name='BankBalanceStatements'),
+    # path('account/formtest', BankBalanceView.fileUpload, name='fileUpload')
 ]
 

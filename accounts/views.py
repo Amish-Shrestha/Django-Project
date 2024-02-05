@@ -162,3 +162,10 @@ class BankBalanceView:
             return render(request,'staticPages/disconnectionPage.html')
         
         return render(request,'accounts/BankBalance.html',{'data': data,'TotalAmount': Amount,'TenderAmount':TenderAmount} )
+    
+    # @login_required
+    # def fileUpload(request):
+    #     if request.method == 'POST':
+    #         value = request.POST.get('my_field')
+    #         print(value)
+    #     return render(request, 'fileUploads/fileUploads.html')

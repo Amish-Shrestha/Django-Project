@@ -12,7 +12,9 @@ class PremiumModel(models.Model):
     EditDate = models.DateField()
     
     
-
+class filesUpload(models.Model):
+    file = models.FileField(upload_to='uploads/')
+    
 
 
 

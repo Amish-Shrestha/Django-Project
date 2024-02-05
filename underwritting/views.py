@@ -67,3 +67,11 @@ def MicroInsurance(request):
                      
     return render(request,'underwritting/MicroInsurance.html',{'Form':Form})
     
+    
+    
+@login_required
+def fileUpload(request):
+    if request.method == 'POST':
+        value = request.POST.get('my_field')
+        print('this is micro--->',value)
+    return render(request, 'fileUploads/fileUploads.html')    
