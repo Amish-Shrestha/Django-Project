@@ -1,0 +1,160 @@
+{% extends 'base.html' %} {%block title%} DASHBOARD {% endblock %} {% block content %}
+
+<div class="card mb-3">
+  <div class="card-body pt-2">
+    <div class="tab-content">
+      <div
+        class="tab-pane preview-tab-pane active"
+        role="tabpanel"
+        aria-labelledby="tab-dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
+        id="dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
+      >
+        <div
+          id="tableExample"
+          data-list='{"valueNames":["policyNo"],"page":10,"pagination":true}'
+        >
+        <div class="search-box mb-2">
+            <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+              <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search" />
+              <span class="fas fa-search search-box-icon"></span>
+            </form>
+          </div>
+          <div class="table-responsive scrollbar">
+            <table class="table table-bordered table-striped fs--1 mb-0" id="dataTable">
+              <thead class="bg-200 text-900">
+                <tr>
+                  <th class="sort">Policy No</th>
+                  <th class="sort" data-sort="reinsurerName">Reinsurer Name</th>
+                  <th class="sort" data-sort="Period">Period</th>
+                  <th class="sort" data-sort="organisationName">
+                    Organisation Name
+                  </th>
+                  <th class="sort" data-sort="insuredFullName">
+                    Insured Full Name
+                  </th>
+                  <th class="sort" data-sort="insuredDOB">
+                    Insured Date of Birth
+                  </th>
+                  <th class="sort" data-sort="plantype">Plan Type</th>
+                  <th class="sort" data-sort="DOC">Date of Commencement</th>
+                  <th class="sort" data-sort="MOP">Mode of Premium</th>
+                  <th class="sort" data-sort="Term">Term</th>
+                  <th class="sort" data-sort="maturityDate">Maturity Date</th>
+                  <th class="sort" data-sort="insuredAge">Insured Age</th>
+                  <th class="sort" data-sort="secFullName">
+                    Secondary Full Name
+                  </th>
+                  <th class="sort" data-sort="secDOB">
+                    Secondary Date of Birth
+                  </th>
+                  <th class="sort" data-sort="secGender">Secondary Gender</th>
+                  <th class="sort" data-sort="secAge">Secondary Age</th>
+                  <th class="sort" data-sort="riAge">Reinsurer Age</th>
+                  <th class="sort" data-sort="basicSumAssured">
+                    Basic Sum Assured
+                  </th>
+                  <th class="sort" data-sort="ADBSA">ADBSA</th>
+                  <th class="sort" data-sort="PTDSA">PTDSA</th>
+                  <th class="sort" data-sort="PWBSA">PWBSA</th>
+                  <th class="sort" data-sort="FESA">FESA</th>
+                  <th class="sort" data-sort="dc_sumFE">DC Sum FE</th>
+                  <th class="sort" data-sort="dc_adb">DC ADB</th>
+                  <th class="sort" data-sort="dc_ptd">DC PTD</th>
+                  <th class="sort" data-sort="dc_pwb">DC PWB</th>
+                  <th class="sort" data-sort="ret_sumFE">Return Sum FE</th>
+                  <th class="sort" data-sort="st_sumFE">Surrendered Sum FE</th>
+                  <th class="sort" data-sort="st_adb">Surrendered ADB</th>
+                  <th class="sort" data-sort="st_ptd">Surrendered PTD</th>
+                  <th class="sort" data-sort="st_pwb">Surrendered PWB</th>
+                  <th class="sort" data-sort="rimaturity">
+                    Reinsurer Maturity
+                  </th>
+                  <th class="sort" data-sort="remarks">Remarks</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                {% for item in ReinsuranceData %}
+                <tr>
+                  <td class="policyNo" name="policyNo">{{ item.PolicyNo }}</td>
+                  <td class="ReinsurerName ">{{ item.ReinsurerName }}</td>
+                  <td class="Period">{{ item.Period }}</td>
+                  <td class="organisationName">{{ item.OrganisationName }}</td>
+                  <td class="insuredFullName">{{ item.InsuredFullName }}</td>
+                  <td class="insuredDOB">{{ item.InsuredDOB }}</td>
+                  <td class="plantype">{{ item.Plantype }}</td>
+                  <td class="DOC">{{ item.DOC }}</td>
+                  <td class="MOP">{{ item.MOP }}</td>
+                  <td class="Term">{{ item.Term }}</td>
+                  <td class="maturityDate">{{ item.MaturityDate }}</td>
+                  <td class="insuredAge">{{ item.InsuredAge }}</td>
+                  <td class="secFullName">{{ item.SecFullName }}</td>
+                  <td class="secDOB">{{ item.SecDOB }}</td>
+                  <td class="secGender">{{ item.SecGender }}</td>
+                  <td class="secAge">{{ item.SecAge }}</td>
+                  <td class="riAge">{{ item.RiAge }}</td>
+                  <td class="basicSumAssured">{{ item.BasicSumAssured }}</td>
+                  <td class="ADBSA">{{ item.ADBSA }}</td>
+                  <td class="PTDSA">{{ item.PTDSA }}</td>
+                  <td class="PWBSA">{{ item.PWBSA }}</td>
+                  <td class="FESA">{{ item.FESA }}</td>
+                  <td class="dc_sumFE">{{ item.dc_sumFE }}</td>
+                  <td class="dc_adb">{{ item.dc_adb }}</td>
+                  <td class="dc_ptd">{{ item.dc_ptd }}</td>
+                  <td class="dc_pwb">{{ item.dc_pwb }}</td>
+                  <td class="ret_sumFE">{{ item.ret_sumFE }}</td>
+                  <td class="st_sumFE">{{ item.st_sumFE }}</td>
+                  <td class="st_adb">{{ item.st_adb }}</td>
+                  <td class="st_ptd">{{ item.st_ptd }}</td>
+                  <td class="st_pwb">{{ item.st_pwb }}</td>
+                  <td class="rimaturity">{{ item.Rimaturity }}</td>
+                  <td class="remarks">{{ item.Remarks }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="row align-items-center mt-3">
+            <div class="pagination d-none"></div>
+            <div class="col">
+              <p class="mb-0 fs--1">
+                <span
+                  class="d-none d-sm-inline-block"
+                  data-list-info="data-list-info"
+                ></span>
+                <span class="d-none d-sm-inline-block"> &mdash; </span>
+                <a class="fw-semi-bold" href="#!" data-list-view="*"
+                  >View all<span
+                    class="fas fa-angle-right ms-1"
+                    data-fa-transform="down-1"
+                  ></span></a
+                ><a class="fw-semi-bold d-none" href="#!" data-list-view="less"
+                  >View Less<span
+                    class="fas fa-angle-right ms-1"
+                    data-fa-transform="down-1"
+                  ></span
+                ></a>
+              </p>
+            </div>
+            <div class="col-auto d-flex">
+              <button
+                class="btn btn-sm btn-primary"
+                type="button"
+                data-list-pagination="prev"
+              >
+                <span>Previous</span>
+              </button>
+              <button
+                class="btn btn-sm btn-primary px-4 ms-2"
+                type="button"
+                data-list-pagination="next"
+              >
+                <span>Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

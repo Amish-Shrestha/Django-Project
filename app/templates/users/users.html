@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {%block title%} MicroInsurance {% endblock %} {% block content %}
+<style>
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    
+    .green {
+        background-color: green;
+    }
+    
+    .red {
+        background-color: red;
+    }
+</style>
+<div class="card mb-3">
+  <div class="card-body p-2">
+    <div class="tab-content">
+      <div
+        class="tab-pane preview-tab-pane active"
+        role="tabpanel"
+        aria-labelledby="tab-dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
+        id="dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
+      >
+        <div
+          id="tableExample"
+          data-list='{"valueNames":["PolicyNumber","AssuredName","LoanCode","BatchId"],"page":12,"pagination":true}'
+        >
+          <div class="table-responsive scrollbar">
+            <table class="table table-bordered table-striped fs--1 mb-0">
+              <thead class="bg-200 text-900"></thead>
+              <tr>
+                <th class="sort">  Name </th>
+                <th class="sort">  UserName </th>
+                <th class="sort">  Users Email  </th>
+                <th class="sort">  Users Groups </th>
+                <th class="sort">  Users Date Joined    </th>
+                <th class="sort">  Users Status </th>
+              </tr>
+              <tbody class="list">
+                {% for user in users %}
+                <tr>
+                  <td class="name">
+                    {{ user.first_name|stringformat:"s" }} {{ user.last_name|stringformat:"s" }}
+                  </td>
+                  <td class="username">{{user.username}}</td>
+                  <td class="email">{{user.email}}</td>
+                  <td class="usergroup">
+                    {% if user.groups.all %} 
+                        {% for group in user.groups.all %}
+                            {{ group.name }}{% if not forloop.last %}, {% endif %} 
+                        {% endfor %} 
+                    {% else %} 
+                        No groups 
+                    {% endif %}
+                  </td>
+                  <td class="Datejoined">{{user.date_joined}}</td>
+                  <td class="Status">
+                        {% if user.is_active %}
+                            <span class="dot green"></span>
+                        {% else %}
+                            <span class="dot red"></span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
