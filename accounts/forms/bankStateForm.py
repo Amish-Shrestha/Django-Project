@@ -16,7 +16,7 @@ class BankStateForm(forms.ModelForm):
     banks_choices = [
         ('Citizen Bank Limited, Surkhet', 'Citizen Bank Limited, Surkhet'),
         ('Nepal Investment Mega Bank Limited', 'Nepal Investment Mega Bank Limited'),
-        ('Citizen Bank Limited, HO', 'Citizen Bank Limited, HO'),
+        ('Citizen Bank Limited, HO-2201', 'Citizen Bank Limited, HO-2201'),
         ('Citizen Bank Limited, Narayanghat', 'Citizen Bank Limited, Narayanghat'),
         ('Citizen Bank Limited, Banepa', 'Citizen Bank Limited, Banepa'),
         ('Nabil Bank Limited, HO-5397', 'Nabil Bank Limited, HO-5397'),
@@ -26,7 +26,7 @@ class BankStateForm(forms.ModelForm):
         ('Citizen Bank Limited, Hetauda', 'Citizen Bank Limited, Hetauda'),
         ('Citizen Bank Limited, Jitpur', 'Citizen Bank Limited, Jitpur'),
         ('Citizen Bank Limited, Janakpur', 'Citizen Bank Limited, Janakpur'),
-        ('Citizen Bank Limited, HO', 'Citizen Bank Limited, HO'),
+        ('Citizen Bank Limited, HO-9201', 'Citizen Bank Limited, HO-9201'),
         ('Citizen Bank Limited, Taulihawa', 'Citizen Bank Limited, Taulihawa'),
         ('Prime Commercial Bank', 'Prime Commercial Bank'),
         ('Kumari Bank Limited, Kalimati', 'Kumari Bank Limited, Kalimati'),
