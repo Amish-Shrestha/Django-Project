@@ -40,11 +40,23 @@
                 data-bs-target="#addModal"
                 >Add Bank Statements</button>
             </div>
+            <button id ='csv' class="csv btn btn-falcon-default btn-sm" type="button" name="csv"><span class="fas fa-external-link-alt" data-fa-transform="shrink-3 down-2"></span><span class="d-none d-sm-inline-block ms-1">Export</span></button>
+            <!-- <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            <button
+            class="btn btn-primary btn-sm"
+              type="submit"
+              name="action"
+              value="export"
+            >
+              Export to Excel
+            </button>
+          </form> -->
           </div>
         </div>
       </div>
           <div class="table-responsive scrollbar">
-            <table class="table table-bordered table-striped fs--1 mb-0">
+            <table class="table table-bordered table-striped fs--1 mb-0" id="table">
               <thead class="bg-200 text-900">
                 <tr>
                   <!-- # data-sort="BankName" -->
@@ -358,6 +370,16 @@
       // Call updateFields initially to set the initial values
       updateFields();
   });
+</script>
+<script>
+  $(document).ready(function() {
+    $('#table').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
 </script>
 
 {% endblock %}
