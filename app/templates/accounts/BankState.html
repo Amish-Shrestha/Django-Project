@@ -34,14 +34,14 @@
       </div> -->
         <div class="card-header">
           <div class="row flex-between-end">
-            <div class="col-auto align-self-center">
+            <!-- <div class="col-auto align-self-center">
                 <button
                 class="btn btn-primary btn-sm"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#addModal"
-                >Add Bank Statements</button>
-            </div>
+                >c</button>
+            </div> -->
           </div>
         </div>
       </div>
@@ -381,6 +381,14 @@
     $('#Mytable').DataTable({
       dom: 'Bfrtip',
       buttons: [
+      {
+          text: 'Add Bank Statements',
+          className: 'btn btn-primary',
+          action: function () {
+            // Trigger the modal when the button is clicked
+            $('#addModal').modal('show');
+          }
+        },
         {
           extend: 'excelHtml5',
           text: 'Export to Excel',
@@ -389,6 +397,7 @@
             columns: ':not(:last-child)' // Exclude the last column
           }
         },
+       
       ],
       // columnDefs: [
       //   { targets: [7], orderable: false, searchable: false } // Assuming edit and delete columns are at indices 3 and 4
