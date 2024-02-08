@@ -9,6 +9,7 @@
         </ul>
 {% endif %} -->
 
+
 <div class="card mb-3">
   
   <div class="card-body pt-0">
@@ -22,14 +23,15 @@
         <div
           id="tableExample"
           data-list='{"valueNames":["title"],"page":10,"pagination":true}'
+
         >
         <div class="d-flex align-items-center justify-content-between">
-          <div class="search-box">
+          <!-- <div class="search-box">
         <form class="position-relative " data-bs-toggle="search" data-bs-display="static">
           <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search" />
           <span class="fas fa-search search-box-icon"></span>
         </form>
-      </div>
+      </div> -->
         <div class="card-header">
           <div class="row flex-between-end">
             <div class="col-auto align-self-center">
@@ -40,23 +42,11 @@
                 data-bs-target="#addModal"
                 >Add Bank Statements</button>
             </div>
-            <button id ='csv' class="csv btn btn-falcon-default btn-sm" type="button" name="csv"><span class="fas fa-external-link-alt" data-fa-transform="shrink-3 down-2"></span><span class="d-none d-sm-inline-block ms-1">Export</span></button>
-            <!-- <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-            <button
-            class="btn btn-primary btn-sm"
-              type="submit"
-              name="action"
-              value="export"
-            >
-              Export to Excel
-            </button>
-          </form> -->
           </div>
         </div>
       </div>
           <div class="table-responsive scrollbar">
-            <table class="table table-bordered table-striped fs--1 mb-0" id="table">
+            <table id='Mytable' class="table table-bordered table-striped fs--1 mb-0 ">
               <thead class="bg-200 text-900">
                 <tr>
                   <!-- # data-sort="BankName" -->
@@ -335,8 +325,7 @@
       var bankMapping = {
         'Citizen Bank Limited, Surkhet': {'shortName': 'CBL', 'ledgerNo': '100014'},
         'Nepal Investment Mega Bank Limited': {'shortName': 'NIBL', 'ledgerNo': '100016'},
-        'Citizen Bank Limited, HO-2201': {'shortName': 'CBL', 'ledgerNo': '100017'},
-        'Citizen Bank Limited, HO-9201': {'shortName': 'CBL', 'ledgerNo': '200065'},
+        'Citizen Bank Limited, HO': {'shortName': 'CBL', 'ledgerNo': '100017'},
         'Citizen Bank Limited, Narayanghat': {'shortName': 'CBL', 'ledgerNo': '200002'},
         'Citizen Bank Limited, Banepa': {'shortName': 'CBL', 'ledgerNo': '200011'},
         'Nabil Bank Limited, HO-5397': {'shortName': 'NBL', 'ledgerNo': '200015'},
@@ -345,7 +334,7 @@
         'Citizen Bank Limited, Tulsipur': {'shortName': 'CBL', 'ledgerNo': '200028'},
         'Citizen Bank Limited, Hetauda': {'shortName': 'CBL', 'ledgerNo': '200029'},
         'Citizen Bank Limited, Jitpur': {'shortName': 'CBL', 'ledgerNo': '200030'},
-        'Citizen Bank Limited, Janakpur': {'shortName': 'CBL', 'ledgerNo': '200044'},
+        'Citizen Bank Limited, Janakpur': {'shortName': 'CBL', 'ledgerNo': '200065'},
         'Citizen Bank Limited, Taulihawa': {'shortName': 'CBL', 'ledgerNo': '200066'},
         'Prime Commercial Bank': {'shortName': 'PCB', 'ledgerNo': '200070'},
         'Kumari Bank Limited, Kalimati': {'shortName': 'KBL', 'ledgerNo': '200071'},
@@ -371,15 +360,41 @@
       updateFields();
   });
 </script>
+<!-- <script>
+  $('#Mytable').DataTable( {
+    buttons: [
+        {
+            extend: 'csv',
+            text: 'Copy all data',
+            exportOptions: {
+                modifier: {
+                    search: 'none'
+                }
+            }
+        }
+    ]
+} );
+</script> -->
 <script>
   $(document).ready(function() {
-    $('#table').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
-} );
+    // Initialize DataTable with Buttons extension
+    $('#Mytable').DataTable({
+      dom: 'Bf',
+      buttons: [
+        {
+          extend: 'excelHtml5',
+          text: 'Export to Excel',
+          className: 'btn btn-success', // Add a custom class for styling
+          exportOptions: {
+            columns: ':not(:last-child)' // Exclude the last column
+          }
+        },
+      ],
+      // columnDefs: [
+      //   { targets: [7], orderable: false, searchable: false } // Assuming edit and delete columns are at indices 3 and 4
+      // ]
+    });
+  });
 </script>
 
 {% endblock %}

@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {%block title%} DASHBOARD {% endblock %}
-{%block content%} this is DASHBOARD 
+{%block content%} 
 
 <form method="post"> 
     {% csrf_token %}
     <input type="file" name="my_field"/>
     <button type="submit">Submit</button>
 </form>
+{{name}}
 
 {% endblock%}

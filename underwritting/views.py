@@ -74,4 +74,6 @@ def fileUpload(request):
     if request.method == 'POST':
         value = request.POST.get('my_field')
         print('this is micro--->',value)
-    return render(request, 'fileUploads/fileUploads.html')    
+
+    a = 'this is underwritting sections'
+    return render(request, 'fileUploads/fileUploads.html',{'name': a})    
