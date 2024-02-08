@@ -19,17 +19,17 @@
         aria-labelledby="tab-dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
         id="dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
       >
+          <!-- data-list='{"valueNames":["title"],"page":10,"pagination":true}' -->
         <div
           id="tableExample"
-          data-list='{"valueNames":["title"],"page":10,"pagination":true}'
         >
         <div class="d-flex align-items-center justify-content-between">
-          <div class="search-box">
+          <!-- <div class="search-box">
         <form class="position-relative " data-bs-toggle="search" data-bs-display="static">
           <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search" />
           <span class="fas fa-search search-box-icon"></span>
         </form>
-      </div>
+      </div> -->
         <div class="card-header">
           <div class="row flex-between-end">
             <div class="col-auto align-self-center">
@@ -44,7 +44,7 @@
         </div>
       </div>
           <div class="table-responsive scrollbar">
-            <table class="table table-bordered table-striped fs--1 mb-0">
+            <table id='Mytable' class="display nowrap ">
               <thead class="bg-200 text-900">
                 <tr>
                   <!-- # data-sort="BankName" -->
@@ -356,6 +356,46 @@
 
       // Call updateFields initially to set the initial values
       updateFields();
+  });
+</script>
+<!-- <script>
+  $('#Mytable').DataTable( {
+    buttons: [
+        {
+            extend: 'csv',
+            text: 'Copy all data',
+            exportOptions: {
+                modifier: {
+                    search: 'none'
+                }
+            }
+        }
+    ]
+} );
+</script> -->
+<script>
+  $(document).ready(function() {
+    // Initialize DataTable with Buttons extension
+    $('#Mytable').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        {
+          extend: 'excelHtml5',
+          text: 'Export to Excel',
+          className: 'custom-button', // Add a custom class for styling
+        },
+        {
+          extend: 'pdfHtml5',
+          text: 'Export to PDF',
+          className: 'custom-button', // Add a custom class for styling
+        },
+        {
+          extend: 'print',
+          text: 'Print',
+          className: 'custom-button', // Add a custom class for styling
+        }
+      ]
+    });
   });
 </script>
 
