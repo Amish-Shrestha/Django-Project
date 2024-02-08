@@ -14,13 +14,13 @@
           data-list='{"valueNames":["policyNo"],"page":10,"pagination":true}'
         >
         <div class="search-box mb-2">
-            <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+            <!-- <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
               <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search" />
               <span class="fas fa-search search-box-icon"></span>
-            </form>
+            </form> -->
           </div>
           <div class="table-responsive scrollbar">
-            <table class="table table-bordered table-striped fs--1 mb-0" id="dataTable">
+            <table id='claimTable' class="table table-bordered table-striped fs--1 mb-0" id="dataTable">
               <thead class="bg-200 text-900">
                 <tr>
                   <th class="sort">Policy No</th>
@@ -157,4 +157,22 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  $(document).ready(function() {
+    // Initialize DataTable with Buttons extension
+    $('#claimTable').DataTable({
+      dom: 'frtip',
+      searching: true, // Disable searching
+      ordering: true,  // Disable ordering
+      paging: true,     // Disable pagination
+      // dom: 'rtip',    // Show search, length change, ordering, table, and paging
+      bInfo: false 
+      // columnDefs: [
+      //   { targets: [7], orderable: false, searchable: false } // Assuming edit and delete columns are at indices 3 and 4
+      // ]
+    });
+  });
+</script>
 {% endblock %}

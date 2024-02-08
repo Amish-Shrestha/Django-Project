@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 @login_required
 @user_group_required('claim')
 def claimsReportView(request):
-    two_years_ago = datetime.now() - timedelta(days=365*2 )
-    data = claimsReports.objects.filter(MaturityDate__range=[two_years_ago, datetime.now()])
+    # two_years_ago = datetime.now() - timedelta(days=365*2 )
+    # data = claimsReports.objects.filter(MaturityDate__range=[two_years_ago, datetime.now()])
+    data = claimsReports.objects.all()
     # print(str(data.query))
     return render(request, 'claim/claimReInsurance.html', {'ReinsuranceData':data})

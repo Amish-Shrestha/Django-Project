@@ -9,6 +9,7 @@
         </ul>
 {% endif %} -->
 
+
 <div class="card mb-3">
   
   <div class="card-body pt-0">
@@ -19,9 +20,10 @@
         aria-labelledby="tab-dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
         id="dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
       >
-          <!-- data-list='{"valueNames":["title"],"page":10,"pagination":true}' -->
         <div
           id="tableExample"
+          data-list='{"valueNames":["title"],"page":10,"pagination":true}'
+
         >
         <div class="d-flex align-items-center justify-content-between">
           <!-- <div class="search-box">
@@ -382,19 +384,15 @@
         {
           extend: 'excelHtml5',
           text: 'Export to Excel',
-          className: 'custom-button', // Add a custom class for styling
+          className: 'btn btn-success', // Add a custom class for styling
+          exportOptions: {
+            columns: ':not(:last-child)' // Exclude the last column
+          }
         },
-        {
-          extend: 'pdfHtml5',
-          text: 'Export to PDF',
-          className: 'custom-button', // Add a custom class for styling
-        },
-        {
-          extend: 'print',
-          text: 'Print',
-          className: 'custom-button', // Add a custom class for styling
-        }
-      ]
+      ],
+      // columnDefs: [
+      //   { targets: [7], orderable: false, searchable: false } // Assuming edit and delete columns are at indices 3 and 4
+      // ]
     });
   });
 </script>
