@@ -14,6 +14,8 @@ import os
 from django.conf import settings
 from django.db.models import F,Sum
 from app.admin import SiteConfiguration
+from django.utils import timezone
+
 
 # Create your views here.
 class bankStateClass():
@@ -29,13 +31,14 @@ class bankStateClass():
         data = BankState.objects.all()
         form = BankStateForm()
         SummaryData = BankState.objects.values('BankShortName').annotate(total_amount=Sum('Amount')) # .annotate(BankName=F('BankName'))
+        current_date = timezone.now().date()
         def process_data(data):
             nonlocal total_sum_premium
             for todaypremium in data:
                 total_sum_premium += todaypremium.Amount
         if data:
             process_data(data)
-        return render(request, 'accounts/BankState.html', {'form': form, 'bankStateData': data, 'totalAmount': total_sum_premium,'SummaryData':SummaryData})
+        return render(request, 'accounts/BankState.html', {'form': form, 'bankStateData': data, 'totalAmount': total_sum_premium,'SummaryData':SummaryData,'current_date':current_date})
         
     @login_required
     @user_group_required('account')

@@ -22,26 +22,12 @@
       >
         <div
           id="tableExample"
-          data-list='{"valueNames":["title"],"page":10,"pagination":true}'
+          data-list='{"valueNames":["title"]}'
 
         >
         <div class="d-flex align-items-center justify-content-between">
-          <!-- <div class="search-box">
-        <form class="position-relative " data-bs-toggle="search" data-bs-display="static">
-          <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search" />
-          <span class="fas fa-search search-box-icon"></span>
-        </form>
-      </div> -->
         <div class="card-header">
           <div class="row flex-between-end">
-            <!-- <div class="col-auto align-self-center">
-                <button
-                class="btn btn-primary btn-sm"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#addModal"
-                >c</button>
-            </div> -->
           </div>
         </div>
       </div>
@@ -97,45 +83,6 @@
               </tr>
             </tbody>
             </table>
-          </div>
-          <div class="row align-items-center mt-3">
-            <div class="pagination d-none"></div>
-            <div class="col">
-              <p class="mb-0 fs--1">
-                <span
-                  class="d-none d-sm-inline-block"
-                  data-list-info="data-list-info"
-                ></span>
-                <span class="d-none d-sm-inline-block"> &mdash; </span>
-                <a class="fw-semi-bold" href="#!" data-list-view="*"
-                  >View all<span
-                    class="fas fa-angle-right ms-1"
-                    data-fa-transform="down-1"
-                  ></span></a
-                ><a class="fw-semi-bold d-none" href="#!" data-list-view="less"
-                  >View Less<span
-                    class="fas fa-angle-right ms-1"
-                    data-fa-transform="down-1"
-                  ></span
-                ></a>
-              </p>
-            </div>
-            <div class="col-auto d-flex">
-              <button
-                class="btn btn-sm btn-primary"
-                type="button"
-                data-list-pagination="prev"
-              >
-                <span>Previous</span>
-              </button>
-              <button
-                class="btn btn-sm btn-primary px-4 ms-2"
-                type="button"
-                data-list-pagination="next"
-              >
-                <span>Next</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -236,6 +183,7 @@
               name="BankName"
               required="required"
             />
+
           </div>
           <div class="mb-3">
             <label class="fs-0" for="eventStartDate">Bank ShortName</label>
@@ -282,13 +230,14 @@
           <div class="mb-3">
             <label class="fs-0" for="eventEndDate">EditDate</label>
             <input
-              class="form-control datetimepicker"
-              id="editEditDate"
-              type="date"
-              name="EditDate"
-              placeholder="yyyy/mm/dd hh:mm"
-              required="required"
-            />
+            class="form-control datetimepicker"
+  
+            type="date"
+            name="EditDate"
+            placeholder="yyyy/mm/dd hh:mm"
+            required="required"
+            value="{{ current_date|date:'Y-m-d' }}"
+        />
           </div>
           
         </div>
@@ -360,26 +309,11 @@
       updateFields();
   });
 </script>
-<!-- <script>
-  $('#Mytable').DataTable( {
-    buttons: [
-        {
-            extend: 'csv',
-            text: 'Copy all data',
-            exportOptions: {
-                modifier: {
-                    search: 'none'
-                }
-            }
-        }
-    ]
-} );
-</script> -->
 <script>
   $(document).ready(function() {
     // Initialize DataTable with Buttons extension
     $('#Mytable').DataTable({
-      dom: 'Bf',
+      dom: 'Bfrtip',
       buttons: [
       {
           text: 'Add Bank Statements',
@@ -394,7 +328,7 @@
           text: 'Export to Excel',
           className: 'btn btn-success', // Add a custom class for styling
           exportOptions: {
-            columns: ':not(:last-child)' // Exclude the last column
+            columns: ':not(:last-child):not(:nth-child(5))' // Exclude the last column
           }
         },
        
