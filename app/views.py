@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from accounts.middleware.permission import user_group_required, group_permission_required
 from django.contrib.auth.models import User
 from .forms.premiumForm import PremiumForm
+from .models import PremiumModel
 # Create your views here.
 
 @login_required
@@ -29,11 +30,51 @@ def logout_view(request):
 
 
 class PremiumData:
-    
+    @login_required
+    @user_group_required('admin') 
     def PremimumView(request):
+        data = PremiumModel.objects.all()
         Form = PremiumForm()
-        return render(request,'required/premium.html',{'Form': Form})
-        
+        total_sum_premium = 0
+        def process_data(data):
+            nonlocal total_sum_premium
+            for todaypremium in data:
+                total_sum_premium += todaypremium.TotalPremium
+        if data:
+            process_data(data)
+        return render(request,'required/premium.html',{'Form': Form, 'data':data, 'totalAmount': total_sum_premium})
+    
+    @login_required
+    @user_group_required('admin') 
+    def CrestPremium(request):
+        if request.method == 'POST':
+            form = PremiumForm(request.POST)
+            if form.is_valid:
+                form.save()
+        return redirect('premium')
+    
+    @login_required
+    @user_group_required('admin') 
+    def EditPremium(request):
+        if request.method == 'POST':
+            pk = request.POST.get('RowId')
+            instance = get_object_or_404(PremiumModel, pk=pk)
+            form = PremiumForm(request.POST, instance=instance)
+            if form.is_valid():
+                form.save()
+                return redirect('premium')    # Redirect to a success page or another page
+        else:
+            form = PremiumForm(instance=instance)
+        return redirect('premium')
+
+    @login_required
+    @user_group_required('admin') 
+    def DeletePremium(request, pk):
+        # Delete operation
+            instance = get_object_or_404(PremiumModel, pk=pk)
+            instance.delete()
+            # messages.success(request, 'Deleted successfully')
+            return redirect('premium')# Redirect to a success page or another page
 
 # @login_required
 # def refresh_session(request):
