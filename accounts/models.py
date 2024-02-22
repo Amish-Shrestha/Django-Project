@@ -6,11 +6,10 @@ class BankState(models.Model):
     RowId = models.AutoField(primary_key=True)
     BankName = models.CharField(max_length=255)
     BankShortName = models.CharField(max_length=50)
-    LedgerNo = models.CharField(max_length=20, null=True, default='')
+    LedgerNo = models.CharField(max_length=20, unique=True, null=True, default='')
     Amount = models.DecimalField(max_digits=15, decimal_places=2)
     LatestDate = models.DateField(default=date.today)
     EditDate = models.DateField(default=date.today)  # auto_now_add=True
-
     
     
 class PhonePayReports(models.Model):
@@ -71,7 +70,7 @@ class PhonePayReports(models.Model):
                 # Fetch the data
                 columns = [col[0] for col in cursor.description]
                 data = [dict(zip(columns, row)) for row in cursor.fetchall()]
-                print(data)
+                # print(data)
             return data
         else: 
             return None

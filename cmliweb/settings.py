@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+from decouple import config
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +27,7 @@ SECRET_KEY = 'django-insecure-e1hb%8&n4!=5vhdd$il2bp$@y3lox7nvbxkjbbpl#0=3*cq2al
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.40.90']
@@ -88,30 +91,29 @@ WSGI_APPLICATION = 'cmliweb.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 DATABASES = {
     #  'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'LocalCMLIDatabase',
-        'USER': 'admin',
-        'PASSWORD': 'Crest@123',
-        'HOST': '192.168.40.90',
-        'PORT': '1433',
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_INNER_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PWD'),
+        'HOST': config('DATABASE_HOST'),
+        # 'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
         },
     },
     
     'TestDb':{
-        'ENGINE': 'mssql',
-        'NAME': 'CMLI_LIVE',
-        'USER': 'sa',
-        'PASSWORD': 'Cr3sT@#$%@',
-        'HOST': '10.10.238.30',
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_LIVE_NAME'), 
+        'USER':config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PWD'), 
+        'HOST': config('DATABASE_HOST'),
         # 'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',

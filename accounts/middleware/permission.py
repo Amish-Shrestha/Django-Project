@@ -1,4 +1,5 @@
 from functools import wraps
+from django.shortcuts import redirect
 from django.http import HttpResponseForbidden
 
 def user_group_required(group_name):
