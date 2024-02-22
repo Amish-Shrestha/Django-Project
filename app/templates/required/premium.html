@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {%block title%} DASHBOARD {% endblock %} 
 {% block content %}
-
-{{Form}}
 <!-- {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -10,12 +8,12 @@
         </ul>
 {% endif %} -->
 
-<!-- <div class="card mb-3">
+<div class="card mb-3 p-3">
   
   <div class="card-body pt-0">
     <div class="tab-content">
       <div
-        class="tab-pane preview-tab-pane active"
+        class="tab-pane preview-tab-pane active "
         role="tabpanel"
         aria-labelledby="tab-dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
         id="dom-316cb649-6a3e-4ec3-9de8-7d83e880873f"
@@ -24,61 +22,51 @@
           id="tableExample"
           data-list='{"valueNames":["title"],"page":10,"pagination":true}'
         >
-        <div class="d-flex align-items-center justify-content-between">
-          <div class="search-box">
-        <form class="position-relative " data-bs-toggle="search" data-bs-display="static">
-          <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search" />
-          <span class="fas fa-search search-box-icon"></span>
-        </form>
-      </div>
-        <div class="card-header">
-          <div class="row flex-between-end">
-            <div class="col-auto align-self-center">
-                <button
-                class="btn btn-primary btn-sm"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#addModal"
-                >Add Bank Statements</button>
-            </div>
-          </div>
-        </div>
-      </div>
           <div class="table-responsive scrollbar">
-            <table class="table table-bordered table-striped fs--1 mb-0">
+            <table id='Mytable' class="table table-bordered table-striped fs--1 mb-0">
               <thead class="bg-200 text-900">
                 <tr>
-                  # data-sort="BankName"
-                  <th class="sort" >BankName</th> 
-                  <th class="sort" >BankShortName</th>
-                  <th class="sort">LedgerNo</th>
-                  <th class="sort" >Amount:</th>
-                  <th class="sort" >LatestDate</th>
+                  <!-- # data-sort="BankName" -->
+                  <th class="sort" >Branch</th>
+                  <th class="sort" >Province</th> 
+                  <th class="sort">TodayPremium</th>
+                  <th class="sort" >TotalPremium:</th>
+                  <th class="sort" >Employeeid</th>
+                  <th class="sort" >CreatedDate</th>
                   <th class="sort" >EditDate</th>
                   <th class="sort">EDIT||DELETE</th>
                 </tr>
               </thead>
               <tbody class="list mb-2">
-                {% for items in bankStateData %}
+                {% for items in data %}
                 <tr>
-                  <td class="BankName title">{{ items.BankName }}</td>
-                  <td class="BankShortName">{{ items.BankShortName }}</td>
-                  <td class="LedgerNo">{{ items.LedgerNo }}</td>
-                  <td class="Amount">{{ items.Amount }}</td>
-                  <td class="LatestDate">{{ items.LatestDate }}</td>
-                  <td class="LatestDate">{{ items.EditDate }}</td>
+                  <td class="BranchCode">{{ items.BranchCode }}</td>
+                  <td class="ProvinceCode ">{{ items.ProvinceCode }}</td>
+                  <td class="TodayPremium">{{ items.TodayPremium }}</td>
+                  <td class="TotalPremium">{{ items.TotalPremium }}</td>
+                  <td class="EmployeeId">{{ items.EmployeeId }}</td>
+                  <td class="CreatedDate">{{ items.CreatedDate }}</td>
+                  <td class="EditDate">{{ items.EditDate }}</td>
                   <td>
                     <button
                       class="btn btn-primary btn-sm"
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#EditModal"
-                      onclick="openModal({RowId:' {{ items.RowId }}',BankName:'{{ items.BankName }}', BankShortName:'{{ items.BankShortName }}', LedgerNo:'{{ items.LedgerNo }}', Amount: '{{ items.Amount }}', LatestDate:'{{ items.LatestDate|date:'Y-m-d'}}', EditDate:'{{ items.EditDate|date:'Y-m-d' }}'})"
+                      onclick="openModal({
+                        RowId:' {{ items.RowId }}',
+                        ProvinceCode:'{{ items.ProvinceCode }}',
+                        BranchCode:'{{ items.BranchCode}}',
+                        TodayPremium:'{{ items.TodayPremium }}',
+                        TotalPremium: '{{ items.TotalPremium }}', 
+                        EmployeeId: '{{ items.EmployeeId }}', 
+                        CreatedDate:'{{ items.CreatedDate|date:'Y-m-d'}}',  EditDate:'{{ items.EditDate|date:'Y-m-d' }}'
+                        })"
                     >
                       EDIT
                     </button>
                     <button class="btn btn-danger btn-sm" type="button">
-                      <a class="text-white text-decoration-none" href="{% url 'delete_bankstate' pk=items.RowId %}"
+                      <a class="text-white text-decoration-none" href="{% url 'delete_premium' pk=items.RowId %}"
                         >Delete</a
                       >
                     </button>
@@ -97,7 +85,7 @@
             </tbody>
             </table>
           </div>
-          <div class="row align-items-center mt-3">
+          <!-- <div class="row align-items-center mt-3">
             <div class="pagination d-none"></div>
             <div class="col">
               <p class="mb-0 fs--1">
@@ -135,7 +123,7 @@
                 <span>Next</span>
               </button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -165,10 +153,10 @@
     </table>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- AddModal -->
-<!-- <div class="modal fade" id="eventDetailsModal" tabindex="-1">
+<div class="modal fade" id="eventDetailsModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border"></div>
   </div>
@@ -176,9 +164,9 @@
 <div class="modal fade" id="addModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content border">
-      <form method="post" enctype="multipart/form-data" action="{% url 'create_bankstate' %}">
+      <form method="post" enctype="multipart/form-data" action="{% url 'creat_premium' %}">
         <div class="modal-header px-card bg-light border-bottom-0">
-          <h5 class="modal-title">Add Statements</h5>
+          <h5 class="modal-title">Add Premium</h5>
           <button
             class="btn-close me-n1"
             type="button"
@@ -187,18 +175,17 @@
           ></button>
         </div>
         <div class="modal-body p-card">
-        {% csrf_token %} {{ form.as_p }}
-        <button class="btn btn-primary btn-sm" type="submit" name="create">Submit</button>
-
+        {% csrf_token %} {{ Form.as_p }}
+        <button class="btn btn-primary btn-sm" type="submit" name="create">Submit</button>=
         </div>
       </form>
     </div>
   </div>
-</div> -->
+</div>
 
 
 <!-- EditModal -->
-<!-- <div class="modal fade" id="eventDetailsModal" tabindex="-1">
+<div class="modal fade" id="eventDetailsModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border"></div>
   </div>
@@ -206,7 +193,7 @@
 <div class="modal fade" id="EditModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content border">
-      <form id="editModal" autocomplete="off"  method="POST"  action="{% url 'edit_bankstate' %}">
+      <form id="editModal" autocomplete="off"  method="POST"  action="{% url 'edit_premium' %}">
         <div class="modal-header px-card bg-light border-bottom-0">
           <h5 class="modal-title">Edit BankStatement</h5>
           <button
@@ -225,54 +212,64 @@
               type="hidden"
               name="RowId"
               required="required"
-            />
+              />
+              <div class="mb-3">
+                <label class="fs-0" for="eventStartDate">BranchCode</label>
+                <input
+                  class="form-control"
+                  id="editBranchCode"
+                  type="text"
+                  name="BranchCode"
+                  required="required"
+                />
+              </div>    
           <div class="mb-3">
-            <label class="fs-0" for="eventTitle">BankName</label>
+            <label class="fs-0" for="eventTitle">ProvinceCode</label>
             <input
               class="form-control"
-              id="editBankName"
+              id="editProvinceCode"
               type="text"
-              name="BankName"
+              name="ProvinceCode"
               required="required"
             />
           </div>
           <div class="mb-3">
-            <label class="fs-0" for="eventStartDate">Bank ShortName</label>
+            <label class="fs-0" for="eventEndDate">TodayPremium</label>
             <input
               class="form-control"
-              id="editBankShortName"
+              id="editTodayPremium"
               type="text"
-              name="BankShortName"
+              name="TodayPremium"
               required="required"
             />
           </div>
           <div class="mb-3">
-            <label class="fs-0" for="eventEndDate">LedgerNo</label>
+            <label class="fs-0" for="eventEndDate">TotalPremium</label>
             <input
               class="form-control"
-              id="editLedgerNo"
+              id="editTotalPremium"
               type="text"
-              name="LedgerNo"
+              name="TotalPremium"
               required="required"
             />
           </div>
           <div class="mb-3">
-            <label class="fs-0" for="eventEndDate">Amount</label>
+            <label class="fs-0" for="eventEndDate">EmployeeId</label>
             <input
               class="form-control"
-              id="editAmount"
-              type="number"
-              name="Amount"
+              id="editEmployeeId"
+              type="text"
+              name="EmployeeId"
               required="required"
             />
           </div>
           <div class="mb-3">
-            <label class="fs-0" for="eventEndDate">LatestDate</label>
+            <label class="fs-0" for="eventEndDate">CreatedDate</label>
             <input
               class="form-control datetimepicker"
-              id="editLatestDate"
+              id="editCreatedDate"
               type="date"
-              name="LatestDate"
+              name="CreatedDate"
               readonly
               placeholder="yyyy/mm/dd hh:mm"
               required="required"
@@ -298,6 +295,53 @@
       </form>
     </div>
   </div>
-</div> -->
+</div>
+<script>
+  function openModal(data) {
+    console.log(data);
+    for (const key in data) {
+      if (Object.hasOwnProperty.call(data, key)) {
+        const value = data[key] || "";
+        console.log('value',value)
+        console.log('key',key);
+        // Set the value of the corresponding input field
+        document.getElementById("edit" + key).value = value;
+      }
+    }
+  }
+</script>
+
+<script>
+  $(document).ready(function() {
+    // Initialize DataTable with Buttons extension
+    $('#Mytable').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+      {
+          text: 'Add Bank Statements',
+          className: 'btn btn-primary',
+          action: function () {
+            // Trigger the modal when the button is clicked
+            $('#addModal').modal('show');
+          }
+        },
+        // {
+        //   extend: 'excelHtml5',
+        //   text: 'Export to Excel',
+        //   className: 'btn btn-success', // Add a custom class for styling
+        //   exportOptions: {
+        //     columns: ':not(:last-child):not(:nth-child(5))' // Exclude the last column
+        //   }
+        // },
+       
+      ],
+      // columnDefs: [
+      //   { targets: [7], orderable: false, searchable: false } // Assuming edit and delete columns are at indices 3 and 4
+      // ]
+    });
+  });
+</script>
+
+
 
 {% endblock %}
