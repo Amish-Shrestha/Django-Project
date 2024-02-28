@@ -110,27 +110,6 @@
             </table>
           </div>
           <div class="row align-items-center mt-3">
-            <div class="pagination d-none"></div>
-            <div class="col">
-              <p class="mb-0 fs--1">
-                <span
-                  class="d-none d-sm-inline-block"
-                  data-list-info="data-list-info"
-                ></span>
-                <span class="d-none d-sm-inline-block"> &mdash; </span>
-                <a class="fw-semi-bold" href="#!" data-list-view="*"
-                  >View all<span
-                    class="fas fa-angle-right ms-1"
-                    data-fa-transform="down-1"
-                  ></span></a
-                ><a class="fw-semi-bold d-none" href="#!" data-list-view="less"
-                  >View Less<span
-                    class="fas fa-angle-right ms-1"
-                    data-fa-transform="down-1"
-                  ></span
-                ></a>
-              </p>
-            </div>
             <div class="col-auto d-flex">
               <button
                 class="btn btn-sm btn-primary"
@@ -163,11 +142,7 @@
       searching: true, // Disable searching
       ordering: true,  // Disable ordering
       paging: true,     // Disable pagination
-      // dom: 'rtip',    // Show search, length change, ordering, table, and paging
-      bInfo: false 
-      // columnDefs: [
-      //   { targets: [7], orderable: false, searchable: false } // Assuming edit and delete columns are at indices 3 and 4
-      // ]
+      lengthMenu: [5, 10, 25, 50],
     });
   });
 </script>
